@@ -37,7 +37,7 @@ for(i in 1:nBase) {
 	### Residuals
 	Residual <- rnorm(1)*sqrt(ErrVar)
 	### Phenotypes=mean+ BV+ Error
-	BasePop[i,7] <- Mu+ BasePop[i,5]+BasePop[i,6]
+	BasePop[i,7] <- Mu+ BasePop[i,5]+Residual
 	### Gender
 	BasePop[i,4] <- sample(1:2,1,TRUE)
 	### Animal ID
@@ -80,7 +80,7 @@ dams.list <-Dam_data[1:no.dam,1]
 		dam <- sample(dams.list,1)
 		
 		### Generating the breeding values for progeny
-		Progeny[prg,6] <- 0.5*(Pop[sire,6]+Pop[dam,6])+(sqrt(0.5*sqrt(GenVar))*rnorm(1))
+		Progeny[prg,6] <- 0.5*(Pop[sire,6]+Pop[dam,6])+(sqrt(0.5*GenVar)*rnorm(1))
 		### Phenotype for progenies
 		Progeny[prg,7] <- Mu+ Progeny[(prg),6]+ rnorm(1)*sqrt(ErrVar)
 		
